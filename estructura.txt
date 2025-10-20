@@ -1,0 +1,41 @@
+biblioteca-app/
+│
+├── backend/
+│   ├── package.json
+│   ├── src/
+│   │   ├── api/
+│   │   │   ├── routes/
+│   │   │   │   ├── libros.routes.js
+│   │   │   │   ├── socios.routes.js
+│   │   │   │   └── prestamos.routes.js
+│   │   │   └── controllers/
+│   │   │       ├── libroController.js
+│   │   │       ├── socioController.js
+│   │   │       └── prestamoController.js
+│   │   ├── db/
+│   │   │   ├── connection.js
+│   │   │   └── init.sql
+│   │   ├── models/
+│   │   │   ├── Libro.js
+│   │   │   ├── Socio.js
+│   │   │   └── Prestamo.js
+│   │   ├── index.js
+│   │   └── .env
+│   └── tests/
+│       └── api.test.js
+│
+├── frontend/
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── src/
+│   │   ├── main.tsx
+│   │   ├── App.tsx
+│   │   ├── components/
+│   │   │   ├── LibroList.tsx
+│   │   │   ├── SocioForm.tsx
+│   │   │   └── PrestamoList.tsx
+│   │   └── services/
+│   │       └── api.ts
+│   └── index.html
+│
+└── README.md
