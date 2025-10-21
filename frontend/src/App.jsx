@@ -36,7 +36,7 @@ function App() {
 
   // Formularios
   const [libroForm, setLibroForm] = useState({ titulo: '', autor: '', isbn: '' });
-  const [socioForm, setSocioForm] = useState({ nombre: '', numero_socio: '' });
+  const [socioForm, setSocioForm] = useState({ nombre: '', numero_socio: '', telefono: '' });
   const [prestamoForm, setPrestamoForm] = useState({ 
     socio_id: '', 
     libro_id: '', 
@@ -127,7 +127,7 @@ function App() {
     try {
       await api.post('/socios', socioForm);
       showNotification('Socio registrado correctamente');
-      setSocioForm({ nombre: '', numero_socio: '' });
+      setSocioForm({ nombre: '', numero_socio: '', telefono: '' });
       cargarSocios();
     } catch (error) {
       showNotification('Error al registrar socio', 'error');
@@ -361,12 +361,19 @@ function App() {
             />
             <input
               type="text"
-              placeholder="Número de socio"
+              placeholder="DNI de Socio"
               value={socioForm.numero_socio}
               onChange={(e) => handleSocioChange('numero_socio', e.target.value)}
               className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-green-500 focus:outline-none"
               required
             />
+            <input
+  type="text"
+  placeholder="Teléfono"
+  value={socioForm.telefono}
+  onChange={(e) => handleSocioChange('telefono', e.target.value)}
+  className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-green-500 focus:outline-none"
+/>
             <button
               type="submit"
               disabled={loading}
@@ -384,7 +391,8 @@ function App() {
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">ID</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Nombre</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Número de Socio</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">DNI de Socio</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Teléfono</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -393,6 +401,8 @@ function App() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{socio.id}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{socio.nombre}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{socio.numero_socio}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{socio.telefono || '-'}</td>
+
                   </tr>
                 ))}
               </tbody>
