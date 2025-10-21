@@ -53,6 +53,23 @@
         res.status(500).json({ error: err.message });
     }
     };
+    // Listar todos los préstamos activos (sin devolver)
+    export const getPrestamosActivos = async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+        `SELECT p.id, p.fecha_inicio, s.nombre AS socio, s.numero_socio, 
+                l.titulo AS libro, l.autor
+        FROM prestamos p
+        JOIN socios s ON p.socio_id = s.id
+        JOIN libros l ON p.libro_id = l.id
+        WHERE p.fecha_devolucion IS NULL
+        ORDER BY p.fecha_inicio DESC`
+        );
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+    };
 
     // Ver todas las multas
     export const getMultas = async (req, res) => {
